@@ -6,7 +6,7 @@
  */
 
 #pragma once
-
+#include <stm32h7xx_hal.h>
 #include <cstdint>
 
 
@@ -18,4 +18,7 @@ const auto footswitchAPort = GPIOA;
 
 constexpr auto footswitchBPin = 12;
 const auto footswitchBPort = GPIOA;
+
+constexpr auto statusOK  = 0;
+constexpr auto statusERROR = 1;
 }
