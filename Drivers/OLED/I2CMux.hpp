@@ -21,7 +21,7 @@ std::uint16_t address;
 public:
 	I2CMux(const I2C_HandleTypeDef& _i2cHandle, std::uint16_t _address) : i2cHandle(_i2cHandle),address(_address){};
 	void init();
-	auto send(MuxedI2C targetI2C, std::uint8_t data, std::uint8_t dataSize) -> std::uint8_t;
+	auto send(MuxedI2C targetI2C, std::uint8_t* data, std::uint8_t dataSize) -> std::uint8_t;
 	auto receive(MuxedI2C targetI2C, std::uint8_t* buffer, std::uint8_t dataSize) -> std::uint8_t;
 };
 

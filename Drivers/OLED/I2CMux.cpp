@@ -16,7 +16,7 @@ void I2CMux::init() {
 	std::uint8_t buffer = 0x01;
 	HAL_I2C_Master_Transmit_DMA(&i2cHandle, address, &buffer, sizeof(buffer));
 }
-auto I2CMux::send(MuxedI2C targetI2C, std::uint8_t data,
+auto I2CMux::send(MuxedI2C targetI2C, std::uint8_t* data,
 		std::uint8_t dataSize) -> std::uint8_t {
 	// first, select the proper I2C channel in the mux
 
@@ -25,7 +25,7 @@ auto I2CMux::send(MuxedI2C targetI2C, std::uint8_t data,
 	HAL_I2C_Master_Transmit_DMA(&i2cHandle, address, &buffer, sizeof(buffer));
 
 	//then send data through the channel
-	if (HAL_I2C_Master_Transmit_DMA(&i2cHandle, address, &data, dataSize)
+	if (HAL_I2C_Master_Transmit_DMA(&i2cHandle, address, data, dataSize)
 			!= HAL_OK) {
 		return board::statusERROR;
 	}
